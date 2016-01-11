@@ -1,0 +1,28 @@
+{
+  "name": "swan-cli",
+  "version": "0.0.1",
+  "description": "The CLI for the SWAN stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/swanstack/cli.git"
+  },
+  "keywords": [
+    "swan",
+    "cli",
+    "sails",
+    "waterline",
+    "aurelia",
+    "node",
+    "spoonx"
+  ],
+  "author": "RWOverdijk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swanstack/cli/issues"
+  },
+  "homepage": "https://github.com/swanstack/cli#readme"
+}
