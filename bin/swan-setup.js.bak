@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const program   = require('commander');
+const colors    = require('colors');
+const utils     = require('../lib/cli-utils');
+const path      = require('path');
+const setup     = require('../lib/setup');
+const heart     = '<3 '.bold.blue;
+const inquirer  = require('inquirer');
+const questions = utils.questions({
+  slug: {
+    message: 'Enter the slug of the repository (e.g. "swanstack/swan-cli").',
+    when   : function(optionsSoFar) {
+      if (program.args[0]) {
+        optionsSoFar.slug = program.args[0];
+      }
+
+      return !optionsSoFar.slug;
+    }
+  }
+});
+
+program.parse(process.argv);
+
+inquirer.prompt(questions, function(answers) {
+  setup(answers)
+    .then(() => {
+
+    });
+});

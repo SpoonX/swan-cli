@@ -48,3 +48,8 @@ Swan can be configured by changing the contents of the `swan.json` file.
 * Getting started
 * Swan install (to quickly set up your project after cloning).
 * Support for mobile.
+
+## Disclaimer
+This project is a little bit messy. It's relatively easy to get into, but it could be structured much better.
+This is the first version, meant as a PoC to figure out what works best for SWAN.
+This means it _will_ be refactored at some point, but the usage will most likely stay the same.

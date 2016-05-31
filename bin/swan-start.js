@@ -16,7 +16,7 @@ run('server');
 
 function run(side) {
   let runner     = utils.config.runners[side];
-  let bin        = utils.path(side, runner.bin);
+  let bin        = runner.bin;
   let parameters = runner.parameters;
   let child;
 

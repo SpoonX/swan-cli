@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const program   = require('commander');
+const colors    = require('colors');
+const utils     = require('../lib/cli-utils');
+const Github    = require('api-github');
+const heart     = '<3 '.bold.blue;
+const inquirer  = require('inquirer');
+const questions = utils.questions({
+  method  : {
+    type   : 'list',
+    choices: ['token', 'credentials'],
+    message: 'What is your preferred authentication method:',
+    default: 'credentials'
+  },
+  token   : {
+    message: 'Enter your personal access token:',
+    when   : function(optionsSoFar) {
+      return optionsSoFar.method === 'token';
+    }
+  },
+  username: {
+    message: 'Enter your github username:',
+    when   : function(optionsSoFar) {
+      return optionsSoFar.method === 'credentials';q
+    }
+  },
+  password: {
+    type   : 'password',
+    message: 'Enter your github password:',
+    when   : function(optionsSoFar) {
+      return optionsSoFar.method === 'credentials';
+    }
+  }
+});
+
+program.parse(process.argv);
+
+inquirer.prompt(questions, answers => {
+  authenticate(answers.username, answers.password);
+});
+
+function authenticate(username, password, tfa) {
+  let github = new Github({
+    auth: {
+      username: username,
+      password: password
+    }
+  });
+
+  let options = tfa ? {headers: {'X-GitHub-OTP': tfa}} : {};
+
+  return github.authorizations.create(['repo', 'user'], options).then(response => {
+    console.log('response', response);
+  }).catch(result => {
+    if (result.error) {
+      throw result;
+    }
+
+    let headers = result.response.headers;
+
+    if (result.statusCode === 401 && headers['x-github-otp'] === 'required; sms') {
+      inquirer.prompt(utils.questions({tfa: 'Please supply your TFA code:'}), answers => {
+        authenticate(username, password, answers.tfa);
+      });
+    }
+  });
+}
