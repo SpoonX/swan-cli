@@ -21,7 +21,7 @@ inquirer.prompt(utils.questions({token: 'Enter your personal access token:'}), a
     if (error) {
       console.log(`${heartBroken}Something went wrong!`, error);
     } else {
-      console.log(heart + 'Logged in successfully!');
+      console.log(`${heart}Logged in successfully!`);
     }
   });
 });

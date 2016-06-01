@@ -4,41 +4,27 @@
 
 // swan setup github:spoonx/todo-example
 
-const program   = require('commander');
-const colors    = require('colors');
-const utils     = require('../lib/cli-utils');
-const path      = require('path');
-const setup     = require('../lib/setup');
-const heart     = '<3 '.bold.blue;
-const inquirer  = require('inquirer');
-const questions = utils.questions({
-  source: {
-    type   : 'list',
-    choices: ['Github', 'Bitbucket'],
-    message: 'Where is your project hosted:',
-    default: 'Github',
-    when   : function(optionsSoFar) {
-      let firstArg = program.args[0];
-
-      if (!firstArg) {
+const program     = require('commander');
+const colors      = require('colors');
+const utils       = require('../lib/cli-utils');
+const path        = require('path');
+const setup       = require('../lib/setup');
+const heart       = '<3 '.bold.blue;
+const heartBroken = '</3 '.bold.red;
+const inquirer    = require('inquirer');
+const config      = require('../lib/config');
+const questions   = utils.questions({
+  slug  : {
+    message : 'Enter the slug of the github repository (e.g. "swanstack/swan-cli").',
+    default : config.defaultSlug,
+    validate: function(input) {
+      if (!input || input.split('/').length === 2) {
         return true;
       }
 
-      let parts = firstArg.split(':');
-
-      if (parts.length !== 2) {
-        throw 'Expected the first argument to have the format "source:user/repo". e.g. "github:swanstack/swan-cli".';
-      }
-
-      optionsSoFar.source = parts[0];
-      optionsSoFar.slug   = parts[1];
-
-      return false;
-    }
-  },
-  slug  : {
-    message: 'Enter the slug of the repository (e.g. "swanstack/swan-cli").',
-    when   : function(optionsSoFar) {
+      return `Expected the argument to have the format "user/respo". e.g. ` + config.defaultSlug.bold;
+    },
+    when: function(optionsSoFar) {
       if (program.args[0]) {
         optionsSoFar.slug = program.args[0];
       }
@@ -50,10 +36,22 @@ const questions = utils.questions({
 
 program.parse(process.argv);
 
+if (!config.auth) {
+  console.log(`${heartBroken}You need to be authenticated to run this command, run ` + `swan login`.bold +  ` before continuing.`);
+  return;
+}
+
 inquirer.prompt(questions, function(answers) {
+  answers.source = 'Github';
+
   setup(answers)
     .then(() => {
-      console.log(`\n${heart}Created project` + ` ${answers.projectName}!`.bold);
+      console.log(`\n${heart}Forked` + ` ${answers.slug}`.bold);
       console.log(`${heart}Make sure to verify the existence of the repositories on ${answers.source}.`);
+      process.exit();
+    })
+    .catch(error => {
+      console.log(`\n${heartBroken}` + error);
+      process.exit();
     });
 });

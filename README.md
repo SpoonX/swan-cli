@@ -14,32 +14,39 @@ The SWAN stack makes developing applications a lot easier and faster. It follows
 - **API-driven development:** Separation of client (static files) and server (API).
 - **Single entity definition:** Entities (and thus API endpoints) are the same on both the server and the client, including validation.
 
-
 ## Installation
 
-1. Run `npm i -g swan-cli`
-2. `swan --help`
+1. Install swan and the other dependencies: `npm i -g sails jspm gulp swan`
+2. Create a [personal access token](https://github.com/settings/tokens) on github and set permissions for `repo`.
+3. Type `swan login` and enter the access token.
+4. Enjoy!
 
 ## Usage
-Following is an overview of commands available to you.
+Usage is described in the `swan --help` output.
 
-### swan new
-Create a new swan project.
+#### New project
+To create a new project.
 
 ```
-swan new my-application
+swan new projectname
 ```
 
-Use `swan new --help` for more information.
+#### Collaborate on existing project
+To start working on, or check out a project.
 
-### swan start
+```
+swan setup owner/repository
+```
+
+For instance `swan setup spoonx/aurelia-todo`.
+
+#### Start your project
 Start your project. This starts both the server, and the client in one convenient command.
 
 ```
-swan start --verbose
+swan start --v
 ```
 
-Use `swan start --help` for more information.
 
 ## Configuration
 Swan can be configured by changing the contents of the `swan.json` file.
