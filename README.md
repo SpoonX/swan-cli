@@ -16,7 +16,7 @@ The SWAN stack makes developing applications a lot easier and faster. It follows
 
 ## Installation
 
-1. Install swan and the other dependencies: `npm i -g sails jspm gulp swan`
+1. Install swan and the other dependencies: `npm i -g sails jspm gulp swan-cli`
 2. Create a [personal access token](https://github.com/settings/tokens) on github and set permissions for `repo`.
 3. Type `swan login` and enter the access token.
 4. Enjoy!
