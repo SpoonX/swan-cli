@@ -38,7 +38,6 @@ Configure default settings such as personal access token and protocols (ssh/http
 swan configure
 ```
 
-
 #### Collaborate on existing project
 To start working on, or check out a project.
 
@@ -54,7 +53,6 @@ Start your project. This starts both the server, and the client in one convenien
 ```
 swan start --v
 ```
-
 
 ## Configuration
 Swan can be configured by changing the contents of the `swan.json` file.

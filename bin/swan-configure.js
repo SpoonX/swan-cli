@@ -2,15 +2,15 @@
 
 "use strict";
 
-const fs            = require('fs');
-const program       = require('commander');
-const colors        = require('colors');
-const utils         = require('../lib/cli-utils');
-const config        = require('../lib/config');
-const heart         = '<3 '.bold.blue;
-const heartBroken   = '</3 '.bold.red;
-const inquirer      = require('inquirer');
-const questions     = {
+const fs          = require('fs');
+const program     = require('commander');
+const colors      = require('colors');
+const utils       = require('../lib/cli-utils');
+const config      = require('../lib/config');
+const heart       = '<3 '.bold.blue;
+const heartBroken = '</3 '.bold.red;
+const inquirer    = require('inquirer');
+const questions   = {
   'personal access token': {
     message : 'Enter your personal access token:',
     validate: function(input) {

@@ -37,7 +37,7 @@ const questions   = utils.questions({
 program.parse(process.argv);
 
 if (!config.system) {
-  console.log(`${heartBroken}You need to be authenticated to run this command, run ` + `swan login`.bold +  ` before continuing.`);
+  console.log(`${heartBroken}You need to be authenticated to run this command, run ` + `swan configure`.bold +  ` before continuing.`);
   return;
 }
 
