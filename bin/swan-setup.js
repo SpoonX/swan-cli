@@ -46,8 +46,7 @@ inquirer.prompt(questions, function(answers) {
 
   setup(answers)
     .then(() => {
-      console.log(`\n${heart}Forked` + ` ${answers.slug}`.bold);
-      console.log(`${heart}Make sure to verify the existence of the repositories on ${answers.source}.`);
+      console.log(`\n${heart}Setup has been completed for` + ` ${answers.slug}`.bold);
       process.exit();
     })
     .catch(error => {
