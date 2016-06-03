@@ -18,7 +18,7 @@ The SWAN stack makes developing applications a lot easier and faster. It follows
 
 1. Install swan and the other dependencies: `npm i -g sails jspm gulp swan-cli`
 2. Create a [personal access token](https://github.com/settings/tokens) on github and set permissions for `repo`.
-3. Type `swan login` and enter the access token.
+3. Type `swan configure` and follow the steps.
 4. Enjoy!
 
 ## Usage
@@ -30,6 +30,14 @@ To create a new project.
 ```
 swan new projectname
 ```
+
+#### Configuring project
+Configure default settings such as personal access token and protocols (ssh/https). Switching protocols in a swan project will update all the remotes.
+
+```
+swan configure
+```
+
 
 #### Collaborate on existing project
 To start working on, or check out a project.

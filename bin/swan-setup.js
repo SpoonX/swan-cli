@@ -36,14 +36,12 @@ const questions   = utils.questions({
 
 program.parse(process.argv);
 
-if (!config.auth) {
+if (!config.system) {
   console.log(`${heartBroken}You need to be authenticated to run this command, run ` + `swan login`.bold +  ` before continuing.`);
   return;
 }
 
 inquirer.prompt(questions, function(answers) {
-  answers.source = 'Github';
-
   setup(answers)
     .then(() => {
       console.log(`\n${heart}Setup has been completed for` + ` ${answers.slug}`.bold);
