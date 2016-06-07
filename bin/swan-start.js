@@ -4,7 +4,7 @@
 
 const colors  = require('colors');
 const utils   = require('../lib/cli-utils');
-const spawn   = require('child_process').spawn;
+const spawn   = require('cross-spawn-async');
 const program = require('commander');
 
 program
