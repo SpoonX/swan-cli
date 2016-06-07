@@ -42,6 +42,8 @@ if (!config.system) {
 }
 
 inquirer.prompt(questions, function(answers) {
+  answers.source = 'Github';
+
   setup(answers)
     .then(() => {
       console.log(`\n${heart}Setup has been completed for` + ` ${answers.slug}`.bold);
