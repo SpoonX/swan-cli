@@ -1,6 +1,6 @@
 {
   "name": "swan-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The CLI for the SWAN stack",
   "main": "index.js",
   "scripts": {
