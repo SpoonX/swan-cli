@@ -11,6 +11,17 @@ const heart       = '<3 '.bold.blue;
 const heartBroken = '</3 '.bold.red;
 const inquirer    = require('inquirer');
 const questions   = {
+  username: {
+    message : 'What is your github username:',
+    default : (config.git) ? config.git.user.name : '',
+    validate: function (input) {
+      if (input && input.length >= 5) {
+        return true;
+      }
+
+      return `Expected a valid github username.`;
+    }
+  },
   'personal access token': {
     message : 'Enter your personal access token:',
     filter: string => {string.trim()},
@@ -69,6 +80,12 @@ function saveConfiguration (settings) {
   if (settings['personal access token']) {
     settings['token'] = settings['personal access token'];
     delete settings['personal access token'];
+  }
+
+  if (settings.username) {
+    utils.setUsername(settings.username);
+
+    delete settings.username; // don't save in swan
   }
 
   // merge with existing settings
