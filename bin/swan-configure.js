@@ -19,7 +19,7 @@ const questions   = {
         return true;
       }
 
-      return `Expected a valid github username.`;
+      return 'Expected a valid github username.';
     }
   },
   'personal access token': {
@@ -30,7 +30,7 @@ const questions   = {
         return true;
       }
 
-      return `Expected the argument to be a personal access token.`;
+      return 'Expected the argument to be a personal access token.';
     }
   },
   protocol: {
