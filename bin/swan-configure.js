@@ -15,8 +15,11 @@ const questions   = {
     message : 'What is your github username:',
     default : (config.git) ? config.git.user.name : '',
     validate: function (input) {
-      let valid = typeof input === 'string' && input.length > 0;
-      return valid || `Expected a valid github username.`;
+      if (typeof input === 'string' && /\S+/.test(input)) {
+        return true;
+      }
+
+      return `Expected a valid github username.`;
     }
   },
   'personal access token': {
