@@ -24,7 +24,7 @@ const questions   = {
   },
   'personal access token': {
     message : 'Enter your personal access token:',
-    filter: string => {string.trim()},
+    filter  : string => string.trim(),
     validate: function(input) {
       if (input && input.length === 40) {
         return true;
