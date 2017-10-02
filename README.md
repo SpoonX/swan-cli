@@ -1,6 +1,8 @@
 # Swan CLI
 *The command line interface for SWAN.*
 
+**Unmaintained! This setup requires an overhaul, which won't happen any time soon.**
+
 SWAN as a stack runs [**S**ails](http://sailsjs.org/), [**W**aterline](https://github.com/balderdashy/waterline), [**A**urelia](http://aurelia.io) and [**N**ode](https://nodejs.org).
 
 **Note:** This module is work in progress.
